@@ -1,8 +1,18 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
 #root {
-  max-width: 1280px;
+  max-width: 100vw;
+  width: 100%;
+  overflow-x: hidden;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .logo {
@@ -42,10 +52,11 @@
 }
 
 .menu-app {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 2.5rem 2rem 2.5rem;
-  font-family: 'Poppins', Arial, sans-serif;
+  width: 100%;
+  max-width: 100vw;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 header {
   background: linear-gradient(45deg, #8b0000, #ff0000);
@@ -591,4 +602,14 @@ body, .dark-bg {
 }
 
 /* --- [END] ADDITIONS FOR RESPONSIVENESS --- */
+img, .menu-item-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.menu-item {
+  width: 100%;
+  box-sizing: border-box;
+}
 
