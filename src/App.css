@@ -562,3 +562,33 @@ body, .dark-bg {
     padding: 0.2rem;
   }
 }
+
+/* --- [START] ADDITIONS FOR RESPONSIVENESS --- */
+
+/* Ensure the menu fits the screen */
+.menu-app {
+  width: 100vw;
+  max-width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Make menu items wrap on small screens */
+.menu-item {
+  flex-wrap: wrap;
+}
+
+/* Adjust item actions to avoid overflowing */
+.item-actions {
+  align-items: flex-start;
+}
+
+/* Fix hamburger nav list to scroll if too tall */
+.nav-list.open {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* --- [END] ADDITIONS FOR RESPONSIVENESS --- */
+
