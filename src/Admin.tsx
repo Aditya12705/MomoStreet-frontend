@@ -137,22 +137,6 @@ export default function Admin() {
     fetch(`${API_URL}/admin/clear`, { method: "POST" }).then(() => setOrders([]));
   };
 
-  // Handle image upload
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const formData = new FormData();
-    formData.append("file", file);
-    const res = await fetch(`${API_URL}/admin/upload-image`, {
-      method: "POST",
-      body: formData,
-    });
-    const data = await res.json();
-    if (data.url) {
-      setNewItem(item => ({ ...item, image: data.url }));
-    }
-  };
-
   // Menu management handlers
   const handleAddMenuItem = () => {
     if (!newItem.name || (!newItem.price && !newItem.sizes) || !newItem.category) return;
@@ -212,7 +196,7 @@ export default function Admin() {
   formData.append("file", file);
   formData.append("upload_preset", "unsigned_preset"); // Change this to your preset name
 
-  const res = await fetch("https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload", {
+  const res = await fetch("https://api.cloudinary.com/v1_1/dcoedheqt/image/upload", {
     method: "POST",
     body: formData,
   });
@@ -388,7 +372,12 @@ export default function Admin() {
               type="file"
               accept="image/*"
               style={{ marginRight: 8 }}
-              onChange={handleImageUpload}
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                const url = await uploadToCloudinary(file);
+                setNewItem(item => ({ ...item, image: url }));
+              }}
             />
             {newItem.image && (
               <img src={newItem.image} alt="preview" style={{ width: 48, height: 36, objectFit: "cover", borderRadius: 6, border: "1px solid #888", marginRight: 8 }} />
