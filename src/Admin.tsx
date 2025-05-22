@@ -191,10 +191,10 @@ export default function Admin() {
           .then(data => setMenu(data));
       });
   };
-  const handleImageUpload = async (file: File) => {
+  const uploadToCloudinary = async (file: File) => {
   const formData = new FormData();
   formData.append("file", file);
-  formData.append("upload_preset", "unsigned_preset"); // Change this to your preset name
+  formData.append("upload_preset", "unsigned_preset"); // change to your preset name
 
   const res = await fetch("https://api.cloudinary.com/v1_1/dcoedheqt/image/upload", {
     method: "POST",
@@ -202,7 +202,7 @@ export default function Admin() {
   });
 
   const data = await res.json();
-  return data.secure_url; // This is the public image URL
+  return data.secure_url; // public image URL
 };
 
   // Notification clear
